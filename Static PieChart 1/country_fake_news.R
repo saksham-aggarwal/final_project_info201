@@ -52,11 +52,8 @@ plotChart <- function(data) {
   return(pie_chart)
 }  
 
+# Plotting the chart and then saving it
 plot_pie <- plotChart(dataset)
-
-ggsave(filename = "test.jpg", plot = plot_pie)
-#ggsave(filename = "Fake News From Countries", plot = plot_pie)
-
-
+ggsave(filename = "Country Chart.jpg", plot = plot_pie)
 
 
