@@ -1,7 +1,12 @@
 ---
-title: "dynamic"
+title: ""
 output:
   html_document: default
   css: styles.css
 ---
+
+##
+
+![](_site/imgs/6(1).jpg){width=1500px}
+![](_site/imgs/6(2).jpg){width=1500px}
 

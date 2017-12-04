@@ -1,7 +1,10 @@
 ---
-title: "static"
+title: ""
 output:
   html_document: default
   css: styles.css
 ---
 
+##
+
+![](_site/imgs/7.jpg){width=1500px}

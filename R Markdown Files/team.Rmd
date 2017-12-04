@@ -1,7 +1,10 @@
 ---
-title: "team"
+title: ""
 output:
   html_document: default
   css: styles.css
 ---
 
+##
+
+![](_site/imgs/10.jpg){width=1500px}
