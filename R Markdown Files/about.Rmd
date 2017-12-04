@@ -1,28 +1,55 @@
 ---
-title: "about"
-output: html_document
+title: ""
+output:
+  html_document: default
+  css: style.css
 ---
+##
+##
+##
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+![](_site/imgs/5.jpg){width=1300px}
 
-## R Markdown
+##
+##
+##
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+## Project Description
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+##
 
-```{r cars}
-summary(cars)
-```
+##### For our final project, we chose the dataset [Getting Real About Fake News dataset on Kaggle](https://www.kaggle.com/mrisdal/fake-news). It is a 57-MB csv dataset. The data was gathered by utilizing the BS Detector, an open source Google Chrome extension which analyzes content on a page and estimates whether or not a news article is fake, extremely biased, a conspiracy theory or from a hate group.  
 
-## Including Plots
+##
+##
 
-You can also embed plots, for example:
+##### The audience for whom this project has been build includes all the people, especially news enthusiasts, who want to know everything about the news that is, from the author of the news article to the credibility of it. By keeping those needs in mind, we have come up with Fake News Analyzer which analyzes numerous aspects of a dataset about fake news from the year 2016. Moreover, this tool has been build for people who want to know more about popular and extremely biased news sources.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
+##
+##
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+##### Some of the questions which we wanted to answer using our tool and analysis are:
+* Which countries are these news coming from?
+* Are there any groups of people which are targeted more frequently? For example, religious groups, supporters of a politician, hate groups?
+* Which country produces or faces most fake news?
+* In how many languages are these fake news published?
+* What are various categories in which these news articles fall?
+
+##
+##
+##
+
+## Technical Description
+
+##
+
+##### The format of this project is a website built using R Markdown and various R Scripts for data processing and visualization. This website contains five segments - Home page, About page, Static Analysis page, Dynamic Analysis, Team page. The Home, About and Team pages have various descriptions and mainly conatin write-ups. On the other hand, the Static and Dynamic Analysis pages are created majorly using R scripts which analysis, process and create visualizations. The dataset which we have used is a static .csv file.
+
+##### For our analysis, we had to reformat and eliminate certain amount of the data as it contained unnecessary string parts, integer values, and some columns were just making it hard to read the dataset. To make the data more presentable and readable for the users, we made sure to format the string data according to the guidelines of written English. We also discarded rows with NULL values which made visualization somewhat easy. 
+
+##### Major challenges faced during the development of this project were -
+* Unable to knit all the .Rmd files at once
+* Reading the data as it contained garbage values
+* Keeping track of the development progress of various program files
+* Analyzing the relevance of the information and the dataset as a whole
+
