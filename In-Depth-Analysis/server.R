@@ -1,13 +1,31 @@
 library(shiny)
 library(data.table)
 
-fakeNewsData <- fread("../data/fake.csv") %>% 
-  select(-uuid, -ord_in_thread, -crawled, -domain_rank, -spam_score, -main_img_url,
-         -replies_count, -participants_count, -likes, -comments, -shares, -thread_title, -published)
 
-# Define server logic required to draw a histogram
 shinyServer(function(input, output) {
-  # TODO: reactively filter the data table based on input data
-  output$table <- renderDataTable(fakeNewsData)
+  source("global.R", local = TRUE)
+  reactiveFakeNewsData <- reactive({
+    # Resets fake news data frame
+    currentFakeNewsData <- fakeNewsDataFrame
+    
+    # Filters by language 
+    if (input$language != "All") {
+      currentFakeNewsData <- filter(currentFakeNewsData, language == str_to_lower(input$language))
+    }
+    
+    # Filters by author 
+    if (input$author != "All") {
+      currentFakeNewsData <- filter(currentFakeNewsData, author == input$author)
+    }
+    
+    # Filters by country
+    if (input$country != "All") {
+      currentFakeNewsData <- filter(currentFakeNewsData, country == input$country)
+    }
+    
+    currentFakeNewsData
+  })
+  
+  output$table <- renderDataTable(reactiveFakeNewsData())
 })
   
