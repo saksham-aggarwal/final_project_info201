@@ -7,6 +7,7 @@ fakeNewsData <- fread("../data/fake.csv") %>%
 
 # Define server logic required to draw a histogram
 shinyServer(function(input, output) {
+  # TODO: reactively filter the data table based on input data
   output$table <- renderDataTable(fakeNewsData)
 })
   
