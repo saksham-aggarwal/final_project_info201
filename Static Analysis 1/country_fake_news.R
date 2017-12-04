@@ -37,23 +37,23 @@ plotChart <- function(data) {
   total <- nrow(reqd_set)
   
   df <- data.frame(
-    legend = c("US", "Germany", "Europe Union", "Colombia", "France", "UK", "Australia", "Canada", 
+    Countries <-  c("US", "Germany", "Europe Union", "Colombia", "France", "UK", "Australia", "Canada", 
               "Singapore", "Liechtenstein", "British Indian Ocean Territory", "MB", 
               "Tuvalu", "Spain", "Russian Federation", "Netherlands", "Montenegro", 
               "India", "Iran", "Estonia", "Sweden", "South Africa", "Iceland", 
               "Bulgaria", "Switzerland", "NONE"),
-    slices = c(us, de, eu, co, fr, gb, au, ca, sg, li, io, mb, tv, es, ru, nl, me, in_, 
+    slices <- c(us, de, eu, co, fr, gb, au, ca, sg, li, io, mb, tv, es, ru, nl, me, in_, 
                 ir, ee, se, za, is, bg, ch, none)
   )
 
-   pie_chart <- ggplot(df, aes(x="", y=slices, fill=legend))+
-      geom_bar(width = 1, stat = "identity") + coord_polar("y", start=50) + ylab("Fake News according to Countries")
+   pie_chart <- ggplot(df, aes(x="", y=slices, fill=Countries))+
+      geom_bar(width = 1, stat = "identity") + coord_polar("y", start=0) + ylab("Fake News according to Countries")
   
   return(pie_chart)
 }  
 
 # Plotting the chart and then saving it
 plot_pie <- plotChart(dataset)
-ggsave(filename = "Country Chart.jpg", plot = plot_pie)
+ggsave(filename = "Static Analysis 1/Country Chart.jpg", plot = plot_pie)
 
 
