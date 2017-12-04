@@ -2,7 +2,7 @@ library(dplyr)
 library(data.table)
 library(stringr)
 
-fakeNews <- data.frame(fread("C:/Users/bower/Info201/final_project_info201/data/fake.csv"))
+fakeNews <- data.frame(fread("../data/fake.csv"))
 
 shinyServer(function(input, output) {
   
