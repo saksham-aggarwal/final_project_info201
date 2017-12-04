@@ -11,7 +11,7 @@ shinyUI(
     sidebarLayout(
       sidebarPanel(
         
-        textInput("search", "Search", placeholder = "Search here")
+        textInput("search", "Search", placeholder = "Search here", value = "Trump")
       ),
       
       mainPanel(
