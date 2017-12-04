@@ -5,7 +5,7 @@ library(data.table)
 
 shinyUI(fluidPage(
   
-  titlePanel("Website Validity"),
+  titlePanel("How Fake is Fake News"),
   
   sidebarLayout(
     sidebarPanel(
@@ -13,6 +13,7 @@ shinyUI(fluidPage(
     ),
     
     mainPanel(
+      textOutput("prompt"),
       textOutput("text")
     )
   )
