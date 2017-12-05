@@ -1,5 +1,6 @@
 ---
 title: ""
+runtime: shiny
 output:
   html_document: default
   css: styles.css
@@ -7,6 +8,36 @@ output:
 
 ##
 
-![](_site/imgs/6(1).jpg){width=1500px}
-![](_site/imgs/6(2).jpg){width=1500px}
+```{r, echo = FALSE}
+library(shiny)
+shinyAppDir("../Fake_News_Analysis/",
+  options=list(
+    width="100%", height=500
+  )
+)
+```
+This application shows what percentage of articles contain phrases that the user can search for. It is interesting to find how many articles contain keywords in these subjects: 
+* Political figures
+* Religions
+* Racial issues
+* Conspiracies
 
+```{r, echo = FALSE}
+library(shiny)
+shinyAppDir("../Keyword_Analysis/",
+  options=list(
+    width="100%", height=550
+  )
+)
+```
+This tool allows users to analyze the BS Detector Spam Score for articles containing keywords and their categories. The Spam Score is approximated by the BS Detector by analyzing frequent "spammy" words and their share counts. 
+
+```{r, echo = FALSE}
+library(shiny)
+shinyAppDir("../Article-Finder/",
+  options=list(
+    width="100%", height=1000
+  )
+)
+```
+This tool allows for a search for any article within the dataset based on language, author, and country.
