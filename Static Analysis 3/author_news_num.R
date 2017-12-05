@@ -82,5 +82,5 @@ generate_graph <- function(lbls, values) {
 
 # Plotting and saving the graph
 plot_graph <- generate_graph(major_author, number_of_news)
-ggsave(filename = "Static Analysis 3/author_num.jpg", plot = plot_graph, width = 8, height = 8)
+#ggsave(filename = "Static Analysis 3/author_num.jpg", plot = plot_graph, width = 8, height = 8)
 

@@ -54,6 +54,6 @@ plotChart <- function(data) {
 
 # Plotting the chart and then saving it
 plot_pie <- plotChart(dataset)
-ggsave(filename = "Static Analysis 1/Country Chart.jpg", plot = plot_pie)
+##ggsave(filename = "Static Analysis 1/Country Chart.jpg", plot = plot_pie)
 
 
