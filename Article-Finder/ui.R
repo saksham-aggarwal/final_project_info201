@@ -1,9 +1,9 @@
 library(shiny)
 
-fakeNewsData <- fread("../data/fake.csv")
+source("global.R", local = TRUE)
 
 shinyUI(fluidPage(
-  
+
   # Application title
   titlePanel("Article Finder"),
   
@@ -13,19 +13,19 @@ shinyUI(fluidPage(
            selectInput("language",
                        "Language",
                        c("All",
-                         unique(as.character(fakeNewsData$language))))
+                         sort(unique(str_to_title(as.character(currentFakeNewsData$language))))))
     ),
     column(3,
            selectInput("author",
                        "Author",
                        c("All",
-                         unique(as.character(fakeNewsData$author))))
+                         sort(unique(as.character(currentFakeNewsData$author)))))
     ),
     column(3,
            selectInput("country",
                        "Country",
                        c("All",
-                         unique(as.character(fakeNewsData$country))))
+                         sort(unique( as.character(currentFakeNewsData$country)))))
     )
   ),
     

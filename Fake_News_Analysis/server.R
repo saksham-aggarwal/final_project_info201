@@ -1,7 +1,6 @@
 library(shiny)
 library(dplyr)
 library(stringr)
-library(data.table)
 library(ggplot2)
 
 # Data Frame for Fake News
