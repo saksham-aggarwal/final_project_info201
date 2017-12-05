@@ -1,8 +1,6 @@
 library("dplyr")
 library("ggplot2")
 
-dataset <- read.csv("~/Desktop/CourseWork/Sophomore Year/Autumn 2017/INFO201/Final Project/final_project_info201/data/fake.csv", stringsAsFactors = FALSE)
-
 plotChart <- function(data) {
   reqd_set <- data.frame(dataset[10])
   colnames(reqd_set) <- c("Country")
@@ -52,8 +50,8 @@ plotChart <- function(data) {
   return(pie_chart)
 }  
 
-# Plotting the chart and then saving it
-plot_pie <- plotChart(dataset)
-##ggsave(filename = "Static Analysis 1/Country Chart.jpg", plot = plot_pie)
+## Plotting the chart and then saving it
+#plot_pie <- plotChart(dataset)
+#ggsave(filename = "Static Analysis 1/Country Chart.jpg", plot = plot_pie)
 
 

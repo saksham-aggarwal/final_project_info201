@@ -2,12 +2,6 @@ library("dplyr")
 library("ggplot2")
 library("stringr")
 
-data <- data.frame(read.csv("data/fake.csv", stringsAsFactors = FALSE))
-
-# Filtering and vectorizing the dataset for authors
-authors <- select(data, author)
-unique_authors <- unlist(unique(data[3]), use.names = FALSE)  #vector only
-
 # Counts the number of news articles written by various authors
 counter <- function(vector) {
   result2 <- c()
@@ -80,7 +74,7 @@ generate_graph <- function(lbls, values) {
   return(graph)
 }
 
-# Plotting and saving the graph
-plot_graph <- generate_graph(major_author, number_of_news)
-##ggsave(filename = "Static Analysis 3/author_num.jpg", plot = plot_graph, width = 8, height = 8)
+## Plotting and saving the graph
+#plot_graph <- generate_graph(major_author, number_of_news)
+#ggsave(filename = "Static Analysis 3/author_num.jpg", plot = plot_graph, width = 8, height = 8)
 

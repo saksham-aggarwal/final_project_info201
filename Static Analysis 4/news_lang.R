@@ -1,8 +1,6 @@
 library(dplyr)
 library(ggplot2)
 
-data_set <- read.csv("data/fake.csv", stringsAsFactors = FALSE)
-
 pie_Chart <- function(dataset) {
   
   # english <- nrow(filter(dataset, language == "english"))
@@ -35,5 +33,5 @@ pie_Chart <- function(dataset) {
   return(pie_chart)
 }
 
-graph <- pie_Chart(data_set)
-ggsave(filename = "Static Analysis 4/news_lang.jpg", plot = graph)
+#graph <- pie_Chart(data_set)
+#ggsave(filename = "Static Analysis 4/news_lang.jpg", plot = graph)

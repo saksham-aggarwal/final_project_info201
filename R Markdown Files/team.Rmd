@@ -20,7 +20,8 @@ output:
 ##
 ##
 
-### [Hayden Hong](http://haydenhong.com/)
+### Hayden Hong
+[Personal Website](http://haydenhong.com/)
 
 ![](_site/imgs/hayden2.JPG){width=200px}
 

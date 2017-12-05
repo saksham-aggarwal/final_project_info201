@@ -1,8 +1,6 @@
 library(dplyr)
 library(ggplot2)
 
-data_set <- read.csv("~/info 201/final_project_info201/data/fake.csv", stringsAsFactors = FALSE)
-
 bar.Graph <- function(dataset) {
   
 #bs <- nrow(filter(dataset, type == "bs"))
@@ -24,5 +22,5 @@ bar_graph <- ggplot(data, aes(x = Types , y = Categories, fill = Types)) +
   return(bar_graph)
 }
 
-graph <- bar.Graph(data_set)
-ggsave(filename = "fake_news_type.jpg", plot = graph)
+#graph <- bar.Graph(data_set)
+#ggsave(filename = "fake_news_type.jpg", plot = graph)

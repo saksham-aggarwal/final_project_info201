@@ -7,4 +7,52 @@ output:
 
 ##
 
+```{r echo = FALSE, warning=FALSE, message=FALSE}
+library("dplyr")
+dataset <- data.frame(read.csv("../data/fake.csv", stringsAsFactors = FALSE))
+source("../Static Analysis 1/country_fake_news.R")
+source("../Static Analysis 2/fake_news_type.R")
+source("../Static Analysis 4/news_lang.R")
+```
+
 ![](_site/imgs/7.jpg){width=1500px}
+
+Here, our team has done some beforehand analysis of the dataset to answer some of the frequently asked questions about the dataset.
+
+1. The following graph delineates the amount of fake news witnessed by different countries. The country which has witnessed the most fake amount of fake news is the United States and this can be seen as the color representing the country occupies almost three-fourth of the graph. According to the dataset, we also got to know that Iran has witnessed least fake news.
+
+```{r echo = FALSE}
+plot_pie <- plotChart(dataset)
+plot_pie
+```
+
+
+2. The graph fake_news_type.jpg gives us the elaborate graphical description of the various types of news articles that we have in the data set. It contains text and metadata scraped from 244 websites tagged as "bullshit" by the BS Detector Chrome Extension by Daniel Sieradski.The different types in which the news articles have been grouped are: fake, conspiracy, satire, junksci, hate, state and bs. Out of these, 11,492 articles which are 88.4% of the total news articles were BS articles.  BS articles are those ones which do not fall under any other category of news , and are by default assigned to be BS type. This is the reason why we have omitted the section containing the bs type data from the bar plot in order to provide a clearer visual representation and comparision of data.
+
+```{r echo = FALSE}
+graph <- bar.Graph(dataset)
+graph 
+```
+
+3. This graph shows the number of fake news articles written by number of articles. Moreover, the authors chosen for this analysis are those who have written more than 50 such articles. However, there were numerous articles which were published as "Unknown" so we had to neglect those articles in this analysis. Admin is someone anonymous but majority of such articles are written by him. Stevew is the person who has written the least number of fake articles amongst the authors chosen for this analysis.
+
+##
+
+```{r echo = FALSE}
+authors <- select(dataset, author)
+unique_authors <- unlist(unique(dataset[3]), use.names = FALSE)
+source("../Static Analysis 3/author_news_num.R")
+plot_graph <- generate_graph(major_author, number_of_news)
+plot_graph
+```
+
+## 
+
+4. The graph news_lang.jpg gives us the elaborate graphical description of the various languages in which the news articles were published in the form of a pie chart. We chose a pie chart, since it clearly gives us the different sections/portions out of the total that each language represents using color coding. As we can see in the dataframe, there are 12,403 out of a total of 12,999 occurances of english which is approximately 95% of the total languages of the article. This is the reason why in our pie chart we have omitted the section which represents english to provide a clearer visual representation and comparision of data.
+
+## 
+
+```{r echo = FALSE}
+graph <- pie_Chart(dataset)
+graph 
+```
