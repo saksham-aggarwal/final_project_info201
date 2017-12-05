@@ -74,7 +74,7 @@ generate_graph <- function(lbls, values) {
   
   graph <- ggplot(data = df, aes(x = dataLabels, y = Values)) + 
     geom_bar(stat = "identity", width = 0.5, fill = "darkviolet") + 
-    coord_flip() + theme_bw() + 
+    coord_flip() + theme_bw() + xlab("Authors") + ylab("Number of articles written") + 
     geom_text(aes(label = Values), vjust=0.3, hjust = -1.0, size=3.0) + theme_minimal()
   
   return(graph)
@@ -82,5 +82,5 @@ generate_graph <- function(lbls, values) {
 
 # Plotting and saving the graph
 plot_graph <- generate_graph(major_author, number_of_news)
-#ggsave(filename = "Static Analysis 3/author_num.jpg", plot = plot_graph, width = 8, height = 8)
+##ggsave(filename = "Static Analysis 3/author_num.jpg", plot = plot_graph, width = 8, height = 8)
 
