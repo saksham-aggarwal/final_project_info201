@@ -9,14 +9,26 @@ shinyUI(fluidPage(
   
   sidebarLayout(
     sidebarPanel(
-        textInput("search", "Search", placeholder = "Search here", value = "Trump")
+      textInput("search", "Search", placeholder = "Search here", value = "Trump"),
+      
+      checkboxGroupInput("types",
+                         "Type of BS",
+                         c("bs" = "bs", 
+                           "conspiracy" = "conspiracy",
+                           "fake" = "fake",
+                           "satire" = "satire",
+                           "hate" = "hate",
+                           "junksci" = "junksci",
+                           "state" = "state"),
+                         selected = "bs")
     ),
     
     mainPanel(
       textOutput("prompt"),
-      textOutput("text")
+      textOutput("text"),
+      plotOutput("plot")
     )
   )
   
-  )
+)
 )

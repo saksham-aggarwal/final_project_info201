@@ -17,22 +17,30 @@ output:
 #### Now to unveil the curtain and meet the faces behind the work that went into this project.
 
 ##
+##
+##
 
 ### Hayden Hong
 
-
+![](_site/imgs/hayden2.JPG){width=200px}
 
 ##
+##
 
-##### 
+##### I will be there at the same time I don't have a lot of time to get to know you better and I will be there at all I just want to be sure I have the right to be mad at me for not being able to get the money.
+
+##
 
 ### Mrinoy Banerjee
 
 ![](_site/imgs/mrinoy.JPG){width=200px}
 
 ##
+##
 
-#####
+##### Mrinoy is a curious and driven sophomore intending to major in Informatics at the University of Washington with a demonstrated history of working in the innovation industry. Skilled in Public speaking, Customer Service, Storytelling, Team work, Computer Science, and Communication. Interests include travelling, music and food!
+
+##
 
 ### Saksham Aggarwal
 
@@ -43,10 +51,14 @@ output:
 
 ##### Saksham is a sophomore majoring in Mathematics and intending to get into Computer Science. He loves to watch horror movies. He spends a lot of time learning different programming languages but also loves to explore new places and try different food. One fact about him is that he started a community service organization back in high school and developed a website for it. The website URL is gather2share.org
 
+##
 
 ### Will Bowers
 
-![](_site/imgs/will.JPG){width=150px}
+![](_site/imgs/will2.JPG){width=200px}
 
-##### 
+##
+##
+
+##### Will is currently a sophomore at the University of Washington with the intention of majoring in Informatics. Academically, his pursuits revolve around data, whether it be managing it, analyzing it, or visualizing it. Outside of the classroom, he loves to go outside and whenever he isn't on campus there's a good chance you can find him in the mountains skiing, hiking or climbing. 
 
