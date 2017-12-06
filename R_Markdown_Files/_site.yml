@@ -9,7 +9,7 @@ navbar:
     - text: "Static Analysis"
       href: static.html
     - text: "Dynamic Analysis"
-      href: dynamic.html
+      href: https://afruitpie.shinyapps.io/testDynamic/
     - text: "Team"
       href: team.html
       
