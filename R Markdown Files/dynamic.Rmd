@@ -8,33 +8,244 @@ output:
 
 ##
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, message=FALSE}
+
 library(shiny)
-shinyAppDir("../Fake_News_Analysis/",
+library(data.table)
+library(dplyr)
+library(stringr)
+library(ggplot2)
+
+# Data Frame for Fake News
+fakeNewsDataFrame <- fread("fake.csv")
+
+shinyApp(
+  ui = fluidPage(
+    
+  # Application title
+    titlePanel("Getting Real About Fake News"),
+
+    # Sidebar for user input
+    sidebarLayout(
+      sidebarPanel(
+        
+        textInput("search", "Search", placeholder = "Search here", value = "Trump")
+      ),
+      
+      mainPanel(
+        # Insert plots and data here
+        
+        # Pie chart 
+        plotOutput("countFound")
+      )
+    )
+  ),
+  
+  server = function(input, output) {
+  # Insert server functions here
+  searchCount <- reactive({
+    # Organizes the data
+    searchNewsCount <- dplyr::filter(fakeNewsDataFrame, 
+                                     str_detect(str_to_lower(paste(fakeNewsDataFrame$text)), str_to_lower(input$search)))
+    countComparison <- data.frame(titles = c(paste("News containing", input$search), 
+                                             paste("News Not Containing", input$search)))
+    countComparison$amounts <- c(nrow(fakeNewsDataFrame) - nrow(searchNewsCount), nrow(searchNewsCount))
+    
+    # Calculates percentages
+    percentFound <- (100 * round((countComparison$amounts[2] / countComparison$amounts[1]), digits = 4))
+    percentNotFound <- 100 - percentFound
+    countComparison$percents <- c(percentFound, percentNotFound)
+
+    # Creates pie chart
+    pieChart <- ggplot(countComparison, aes(x = "", y = countComparison$percents, fill = titles)) +
+      geom_bar(width = 1, stat = "identity") +
+      coord_polar("y", start = 0) +
+      labs(x = "", y = paste(percentFound, "% of articles contain ", input$search, sep = ""))
+    pieChart
+  })
+  
+  # Outputs the pie chart
+  output$countFound <- renderPlot({
+    print(searchCount())
+  })
+},
+  
   options=list(
     width="100%", height=500
   )
 )
 ```
 This application shows what percentage of articles contain phrases that the user can search for. It is interesting to find how many articles contain keywords in these subjects: 
-* Political figures
-* Religions
-* Racial issues
-* Conspiracies
+*Political figures
+*Religions
+*Racial issues
+*Conspiracies
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, message=FALSE}
+
+
 library(shiny)
-shinyAppDir("../Keyword_Analysis/",
-  options=list(
-    width="100%", height=550
+library(data.table)
+library(dplyr)
+library(stringr)
+library(ggplot2)
+fakeNews <- data.frame(fread("fake.csv"))
+
+ui <- fluidPage(fluidPage(
+  
+  titlePanel("How Fake is Fake News"),
+  
+  sidebarLayout(
+    sidebarPanel(
+      textInput("search", "Search", placeholder = "Search here", value = "Trump"),
+      
+      checkboxGroupInput("types",
+                         "Type of BS",
+                         c("bs" = "bs", 
+                           "conspiracy" = "conspiracy",
+                           "fake" = "fake",
+                           "satire" = "satire",
+                           "hate" = "hate",
+                           "junksci" = "junksci",
+                           "state" = "state"),
+                         selected = "bs")
+    ),
+    
+    mainPanel(
+      textOutput("prompt"),
+      textOutput("text"),
+      plotOutput("plot")
+    )
   )
+  
 )
+  
+)
+
+server <- function(input, output, session) {
+  
+  
+  avgSpam <- reactive ({
+    selectedData <- fakeNews %>% 
+      filter(str_detect(str_to_lower(paste(fakeNews$text)), str_to_lower(input$search))) %>%
+      filter(type %in% input$types) %>%
+      filter(spam_score != 0)
+    
+    sumSpam <- sum(selectedData$spam_score)
+    returnValue <- round(1.0 * sumSpam / nrow(selectedData), digits = 4) * 100.0
+    returnValue <- paste0(returnValue, "%")
+    return(returnValue)
+  })
+  
+  avgSpamPlot <- reactive ({
+    selectedData <- fakeNews %>% 
+      filter(str_detect(str_to_lower(paste(fakeNews$text)), str_to_lower(input$search))) %>%
+      filter(type %in% input$types) %>%
+      filter(spam_score != 0)
+    
+    typeData <- fakeNews %>%
+      filter(type %in% input$types) %>%
+      filter(spam_score != 0)
+    
+    valueComparison <- data.frame(c("Selected percentage", "Total Percentage"), titles = c("Selected percentage", "Total percentage"))
+    selectedPercentage <- (100.0 * round((sum(selectedData$spam_score) / nrow(selectedData)), digits = 4))
+    typePercentage <- (100.0 * round((sum(typeData$spam_score) / nrow(typeData)), digits = 4))
+    valueComparison$percents <- c(selectedPercentage, typePercentage)
+    
+    returnPlot <- ggplot(data = valueComparison, aes(x=titles, y=percents)) + geom_bar(stat="identity")
+    return(returnPlot)
+})
+  
+  output$text <- renderText({print(avgSpam())})
+  
+  output$prompt <- renderText({
+    print(paste0("Articles containing the keyword '", input$search, "' have a spam score of:"))
+  })
+  
+  output$plot <- renderPlot({
+    print(avgSpamPlot())
+  })
+}
+
+shinyApp(ui, server)
 ```
 This tool allows users to analyze the BS Detector Spam Score for articles containing keywords and their categories. The Spam Score is approximated by the BS Detector by analyzing frequent "spammy" words and their share counts. 
 
-```{r, echo = FALSE}
+```{r, echo = FALSE, message=FALSE}
+
 library(shiny)
-shinyAppDir("../Article-Finder/",
+library(data.table)
+library(dplyr)
+library(stringr)
+library(ggplot2)
+
+# Fake news data frame to be shared between server.R and ui.R
+fakeNewsDataFrame <- fread("fake.csv") %>% 
+  select(-uuid, -ord_in_thread, -crawled, -domain_rank, -spam_score, -main_img_url,
+         -replies_count, -participants_count, -likes, -comments, -shares, -thread_title, -published)
+
+# Storing the current state of the data frame
+currentFakeNewsData <- fakeNewsDataFrame
+
+shinyApp(
+  ui = fluidPage(
+
+  # Application title
+  titlePanel("Article Finder"),
+  
+  fluidRow(
+    # Insert selectInput menus
+    column(3,
+           selectInput("language",
+                       "Language",
+                       c("All",
+                         sort(unique(str_to_title(as.character(currentFakeNewsData$language))))))
+    ),
+    column(3,
+           selectInput("author",
+                       "Author",
+                       c("All",
+                         sort(unique(as.character(currentFakeNewsData$author)))))
+    ),
+    column(3,
+           selectInput("country",
+                       "Country",
+                       c("All",
+                         sort(unique( as.character(currentFakeNewsData$country)))))
+    )
+  ),
+    
+    fluidRow(
+      dataTableOutput("table")
+    )
+  ),
+  
+  server = function(input, output) {
+  # source("global.R", local = TRUE)
+  reactiveFakeNewsData <- reactive({
+    # Resets fake news data frame
+    currentFakeNewsData <- fakeNewsDataFrame
+    
+    # Filters by language 
+    if (input$language != "All") {
+      currentFakeNewsData <- filter(currentFakeNewsData, language == str_to_lower(input$language))
+    }
+    
+    # Filters by author 
+    if (input$author != "All") {
+      currentFakeNewsData <- filter(currentFakeNewsData, author == input$author)
+    }
+    
+    # Filters by country
+    if (input$country != "All") {
+      currentFakeNewsData <- filter(currentFakeNewsData, country == input$country)
+    }
+    
+    currentFakeNewsData
+  })
+  
+  output$table <- renderDataTable(reactiveFakeNewsData())
+},
   options=list(
     width="100%", height=1000
   )

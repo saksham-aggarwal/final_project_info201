@@ -3,15 +3,15 @@ navbar:
   title: "Fake News Analyzer"
   right:
     - text: "Home"
-      href: index.html
+      href: https://saksham-aggarwal.github.io/final_project_info201/index.html
     - text: "About"
-      href: about.html
+      href: https://saksham-aggarwal.github.io/final_project_info201/about.html
     - text: "Static Analysis"
-      href: static.html
+      href: https://saksham-aggarwal.github.io/final_project_info201/static.html
     - text: "Dynamic Analysis"
-      href: dynamic.html
+      href: https://afruitpie.shinyapps.io/testDynamic/
     - text: "Team"
-      href: team.html
+      href: https://saksham-aggarwal.github.io/final_project_info201/team.html
       
 output:
   html_document:

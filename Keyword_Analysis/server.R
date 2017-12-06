@@ -1,9 +1,10 @@
-library(dplyr)
+library(shiny)
 library(data.table)
+library(dplyr)
 library(stringr)
 library(ggplot2)
 
-fakeNews <- data.frame(fread("../data/fake.csv"))
+fakeNews <- data.frame(fread("fake.csv"))
 
 shinyServer(function(input, output) {
   

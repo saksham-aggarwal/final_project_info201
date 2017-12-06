@@ -1,11 +1,11 @@
 library(shiny)
+library(data.table)
 library(dplyr)
 library(stringr)
 library(ggplot2)
-library(data.table)
 
 # Data Frame for Fake News
-fakeNewsDataFrame <- fread("../data/fake.csv")
+fakeNewsDataFrame <- fread("fake.csv")
 
 shinyServer(function(input, output) {
   # Insert server functions here
