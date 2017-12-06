@@ -76,10 +76,11 @@ shinyApp(
 )
 ```
 This application shows what percentage of articles contain phrases that the user can search for. It is interesting to find how many articles contain keywords in these subjects: 
-*Political figures
-*Religions
-*Racial issues
-*Conspiracies
+
+* Political figures
+* Religions
+* Racial issues
+* Conspiracies
 
 ```{r, echo = FALSE, message=FALSE}
 
