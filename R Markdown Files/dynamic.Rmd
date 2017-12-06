@@ -168,7 +168,9 @@ server <- function(input, output, session) {
   })
 }
 
-shinyApp(ui, server)
+shinyApp(ui, server, options=list(
+    width="100%", height=600
+  ))
 ```
 This tool allows users to analyze the BS Detector Spam Score for articles containing keywords and their categories. The Spam Score is approximated by the BS Detector by analyzing frequent "spammy" words and their share counts. 
 
